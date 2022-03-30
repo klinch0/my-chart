@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+  name: goroutine
+spec:
+  rules:
+  - host: nice.esimplus.mobi
+    http:
+      paths:
+      - backend:
+          service:
+            name: goroutine-svc-service
+            port:
+              number: 8881
+        path: /goroutine-service/(.*)
+        pathType: Prefix

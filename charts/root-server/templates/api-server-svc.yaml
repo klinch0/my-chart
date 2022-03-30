@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: root-server-svc-service
+spec:
+  selector:
+    app: root-server-svc
+  ports:
+    - protocol: TCP
+      port: 8882
+      targetPort: 80
