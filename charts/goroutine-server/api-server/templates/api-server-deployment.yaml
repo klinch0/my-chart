@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-server-service-deployment
+  labels:
+    app: api-server-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-server-svc
+  template:
+    metadata:
+      labels:
+        app: api-server-svc
+    spec:
+      containers:
+      - name: api-server-svc
+        image: appvillisdocker/api-server:prod-{{ .Values.tag }}
+        ports:
+        - containerPort: 80
+        
+      imagePullSecrets:
+      - name: regcred
